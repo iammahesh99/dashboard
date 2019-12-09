@@ -11,6 +11,8 @@ import '../CssFile/Shipment.css';
 import '../CssFile/menu.css';
 import {Line} from 'react-chartjs-2';
 
+
+
 import {
   Route,
   Link
@@ -23,9 +25,10 @@ class SingleItemDetail extends Component {
  constructor(props) {
     super(props);
     this.state={
-    	item:'Sprite',
+    	item:this.props.location.state.item,
     	
     	chartData: {},
+    	
       
     }
     
