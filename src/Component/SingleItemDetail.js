@@ -61,7 +61,7 @@ class SingleItemDetail extends Component {
 				labels:['Day1','Day2','Day3','Day4','Day5','Day6','Day7'],
 				datasets:[
 							{
-								label:'Monitory Loss',
+								label:'Monetary Loss',
 								data:[280,400,500,80,560,340,580],
 								backgroundColor:[
 									'rgba(255, 99, 132, 0.6)',
@@ -238,7 +238,7 @@ class SingleItemDetail extends Component {
 
             <TableRow >
               <TableCell align="center" className="table_head">
-                Monitory Loss
+              Monetary Loss
               </TableCell>
               <TableCell align="center" className="table_column">
               {(25-11)*20}
