@@ -3,7 +3,7 @@ import './App.css';
 
 
 import SignIn from './Component/SignIn';
-import Home from './Component/Home';
+import LoginSuccess from './Component/LoginSuccess'
 import MiniDrawer from './Layout/Nav.js';
 
 
@@ -36,7 +36,7 @@ class App extends Component {
       <div>
       
       <Switch>
-      <Route path="/" exact component={SignIn} />
+      <Route path="/" exact component={LoginSuccess} />
        
        </Switch>
       
