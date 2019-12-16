@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,17 +25,25 @@ import ChatIcon from '@material-ui/icons/Chat';
 import clsx from 'clsx';
 import {
   Route,
-  Link
+  Link, Redirect,  
 } from "react-router-dom";
+import Home from '../Component/Home';
+
+
 import Chatbot from '../Component/Chatbot';
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
+
+// <p>{props.user.displayName}</p>
+// src={props.user.photoURL}
 
 
 
 const drawerWidth = 200;
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   grow: {
     flexGrow: 1,
 
@@ -151,161 +159,250 @@ menuButton: {
 
 
 
-}));
+});
 
-export default function MiniDrawer(props) {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [anchorE2, setAnchorE2] = React.useState(null);
- const [role, setRole] = React.useState('StoreAssociate');
+class MiniDrawer extends Component {
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+   constructor(props) {
+    super(props);
 
-  const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
-
-  const open2 = Boolean(anchorE2);
+  this.state={
+      anchorEl:null,
+      anchorE2:null,
+      notificationAnchorE1:null,
+      searching:false,
+      searchItemName:null,
+      mobileMoreAnchorEl:null,
+      role:'StoreAssociate',
+      open:false,
+      notificationCount:0,
+      hit:[]
+  };
+  
+}
+ 
   
 
-  const handleProfileMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
+   handleProfileMenuOpen = event => {
+    this.setState({anchorEl:event.currentTarget})
   };
-  const handleMessageMenuOpen = event => {
-    setAnchorE2(event.currentTarget);
+   handleMessageMenuOpen = event => {
+    this.setState({anchorE2:event.currentTarget})
   };
-  const handleMessageMenuClose = event => {
-    setAnchorE2(null);
-  };
-
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+   handleMessageMenuClose = event => {
+    this.setState({anchorE2:null})
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
+  handleNotificationMenuOpen = event => {
+    this.setState({notificationAnchorE1:event.currentTarget})
   };
-
-  const handleMobileMenuOpen = event => {
-    setMobileMoreAnchorEl(event.currentTarget);
+   handleNotificationMenuClose = event => {
+    this.setState({notificationAnchorE1:null})
   };
 
 
-
-
-  const handleDrawerOpen = () => {
-
-   
-    setOpen(true);
+   handleMobileMenuClose = () => {
+    this.setState({mobileMoreAnchorEl:null})
   };
 
-  const handleDrawerClose = () => {
+ handleMenuClose = () => {
+  this.setState({anchorEl:null})
+  };
+
+   handleMobileMenuOpen = event => {
+    this.setState({mobileMoreAnchorEl:event.currentTarget})
+  };
+
+
+
+ handleDrawerOpen = () => {
+
+   this.setState({open:true})
+  };
+
+   handleDrawerClose = () => {
     console.log("Clicked");
-    setOpen(false);
+    this.setState({open:false})
   };
 
+ storeView=(e)=>
+ {
+  console.log('clicked')
+  this.setState({searching:!this.state.searching})
+  
+ }
+  
+  
 
 
 
 
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
+
+
+   componentDidMount() {
+    //this.interval = setInterval(() => {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const uri='https://maheshpandey9919.000webhostapp.com/newproject/services/services/under_stock.php';
+    //console.log(uri)
+
+      fetch(proxyurl+uri,{
+        method: 'GET',
+        })
+      .then(response =>  response.json())
+      .then(resData => {
+
+    const Data = resData;
+
+    let a=0;
+    
+    Data.map(pe => {return a=a+1});
+    this.setState({notificationCount:a});
+    this.setState({hit:Data});
+      });
+    }
+  //   , 6000);
+  // }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
+
+
+ render(){
+
+
+              const { classes}= this.props;
+              const isMenuOpen = Boolean(this.state.anchorEl);
+              const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
+              const open2 = Boolean(this.state.anchorE2);
+              const open3 = Boolean(this.state.notificationAnchorE1);
+             
     
 
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-
-      <MenuItem > <button 
-                  onClick={props.onLogout}>
-                  Log Out
-                  </button>
-        </MenuItem>
-    </Menu>
-  );
 
 
+              const menuId = 'primary-search-account-menu';
+              const renderMenu = (
+                <Menu
+                  anchorEl={this.state.anchorEl}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  id={menuId}
+                  keepMounted
+                  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  aria-haspopup="true"
+                  open={isMenuOpen}
+                  onClose={this.handleMenuClose}
+                >
+                
 
-const MessagemenuId = 'primary-message-account-menu';
-  const renderMessage = (
-    <Menu
-      anchorE2={anchorE2}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      id={MessagemenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={open2}
-      onClose={handleMessageMenuClose}
-    >
-      <Chatbot />
-    </Menu>
-  );
+                  <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
 
-
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-
-    <MenuItem onClick={handleMessageMenuOpen}>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          
-            <ChatIcon />
-          
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
+                  <MenuItem > <button 
+                              onClick={this.props.onLogout}>
+                              Log Out
+                              </button>
+                    </MenuItem>
+                </Menu>
+              );
 
 
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
+              const NotificationmenuId = 'primary-notification-account-menu';
+              const renderNotification = (
+                <Menu
+                  anchorEl={this.state.notificationAnchorE1}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  id={NotificationmenuId}
+                  keepMounted
+                  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  aria-haspopup="true"
+                  open={open3}
+                  onClose={this.handleNotificationMenuClose}
+                >
+                
+                  {this.state.hit.map(data => {return(
+                    <React.Fragment>
+                    <MenuItem>
+                    <span style={{color:'green',marginRight:'.75em'}}>{data.item}</span>is understock present in <span style={{color:'red',marginLeft:'.75em'}}> {data.self_name}</span>
+                    </MenuItem>
+                    <hr />
+                    </React.Fragment>
+                    
+                    )})}
 
 
-      
+                </Menu>
+              );
 
 
 
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+            const MessagemenuId = 'primary-message-account-menu';
+              const renderMessage = (
+                <Menu
+                  anchorE2={this.state.anchorE2}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  id={MessagemenuId}
+                  keepMounted
+                  transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  open={open2}
+                  onClose={this.handleMessageMenuClose}
+                >
+                  <Chatbot />
+                </Menu>
+              );
 
 
 
-    </Menu>
-  );
+              const mobileMenuId = 'primary-search-account-menu-mobile';
+              const renderMobileMenu = (
+                <Menu
+                  anchorEl={this.mobileMoreAnchorEl}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  id={mobileMenuId}
+                  keepMounted
+                  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  open={isMobileMenuOpen}
+                  onClose={this.handleMobileMenuClose}
+                >
+
+                <MenuItem onClick={this.handleMessageMenuOpen}>
+                    <IconButton aria-label="show 4 new mails" color="inherit">
+                      
+                        <ChatIcon />
+                      
+                    </IconButton>
+                    <p>Messages</p>
+                  </MenuItem>
+
+
+                  <MenuItem>
+                    <IconButton aria-label="show 11 new notifications" color="inherit" aria-haspopup="true">
+                      <Badge badgeContent={this.state.notificationCount} color="secondary">
+                        <NotificationsIcon />
+                      </Badge>
+                    </IconButton>
+                    <p>Notifications</p>
+                  </MenuItem>
+
+                  <MenuItem onClick={this.handleProfileMenuOpen}>
+                    <IconButton
+                      aria-label="account of current user"
+                      aria-controls="primary-search-account-menu"
+                      aria-haspopup="true"
+                      color="inherit"
+                    >
+                      <AccountCircle />
+                    </IconButton>
+                    <p>Profile</p>
+                  </MenuItem>
+
+
+
+                </Menu>
+
+              );
+              console.log(this.state.searchItemName);
+              console.log(this.state.searching);
 
 
   return (
@@ -313,7 +410,7 @@ const MessagemenuId = 'primary-message-account-menu';
       <AppBar 
       position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: this.state.open,
         })}
       >
         <Toolbar>
@@ -322,8 +419,8 @@ const MessagemenuId = 'primary-message-account-menu';
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open )}
+            onClick={this.handleDrawerOpen}
+            className={clsx(classes.menuButton, this.state.open )}
           >
 
 
@@ -345,38 +442,47 @@ const MessagemenuId = 'primary-message-account-menu';
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onClick={this.storeView}
+              onKeyDown={this.props.searchItem}
             />
           </div>
+          
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-          {role=='StoreAssociate'?
+          {this.state.role=='StoreAssociate'?
           <IconButton aria-label="show 4 new mails"
-          onClick={handleMessageMenuOpen}
+          onClick={this.handleMessageMenuOpen}
            color="inherit">
               
                 <ChatIcon />
               
             </IconButton>:null}
             
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton 
+            aria-label="show 17 new notifications" 
+            color="inherit"
+            aria-haspopup="true"
+            onClick={this.handleNotificationMenuOpen}
+            >
+              <Badge badgeContent={this.state.notificationCount} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <p>{props.user.displayName}</p>
+            <p>{this.props.user.displayName}</p>
             <IconButton
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={this.handleProfileMenuOpen}
               color="inherit"
             >
               
               <img
                 width='32'
+                src={this.props.user.photoURL}
                 className='avatar circle responsive-img'
-                src={props.user.photoURL}
+                
               />
               
             </IconButton>
@@ -388,7 +494,7 @@ const MessagemenuId = 'primary-message-account-menu';
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={this.handleMobileMenuOpen}
               color="inherit"
             >
               <MoreIcon />
@@ -403,7 +509,7 @@ const MessagemenuId = 'primary-message-account-menu';
               className={classes.drawer}
               variant="persistent"
               anchor="left"
-              open={open}
+              open={this.state.open}
               
               classes={{
                 paper: classes.drawerPaper,
@@ -411,8 +517,8 @@ const MessagemenuId = 'primary-message-account-menu';
 
             >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          <IconButton onClick={this.handleDrawerClose}>
+           <ChevronLeftIcon/>
           </IconButton>
         </div>
         <Divider />
@@ -455,10 +561,19 @@ const MessagemenuId = 'primary-message-account-menu';
         <Divider />
         
       </Drawer>
-
+      
       {renderMobileMenu}
       {renderMenu}
       {renderMessage}
+      {renderNotification}
+      
     </div>
   );
 }
+}
+
+MiniDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(MiniDrawer);

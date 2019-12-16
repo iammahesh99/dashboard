@@ -107,7 +107,7 @@ class SignIn extends Component {
 
     }else{
       localStorage.setItem('email',this.state.authUser.email);
-      Toast.success('success');
+      
       return (<div>
         <LoginSuccess
         onLogout={this.handleLogout}

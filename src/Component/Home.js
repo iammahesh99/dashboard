@@ -27,6 +27,8 @@ import Frontview from '../Component/Frontview';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Toast from 'light-toast';
+
 
 
 
@@ -103,13 +105,16 @@ class Home extends Component {
       open3: false,
       open5: false,
       hit:[],
-      a:false,
-      b:false,
-      c:false,
-      d:false,
-      e:false,
-      f:false,
-      g:false,
+      a:null,
+      b:null,
+      c:null,
+      d:null,
+      e:null,
+      f:null,
+      g:null,
+    // itemName:this.props.location.state.itemName,
+     //itemName:null
+      
       
     };
     this._onButtonClick = this._onButtonClick.bind(this);
@@ -123,31 +128,31 @@ class Home extends Component {
     this.state.hit.map(content =>{
                           if(content.self_name==='self1')
                           {
-                            this.setState({a:true});
+                            this.setState({a:'red'});
                           }
                           if(content.self_name==='self2')
                           {
-                            this.setState({b:true});
+                            this.setState({b:'red'});
                           }
                           if(content.self_name==='self3')
                           {
-                            this.setState({c:true});
+                            this.setState({c:'red'});
                           }
                           if(content.self_name==='self4')
                           {
-                            this.setState({d:true});
+                            this.setState({d:'red'});
                           }
                           if(content.self_name==='self5')
                           {
-                            this.setState({e:true});
+                            this.setState({e:'red'});
                           }
                           if(content.self_name==='self6')
                           {
-                            this.setState({f:true});
+                            this.setState({f:'red'});
                           }
                           if(content.self_name==='self7')
                           {
-                            this.setState({g:true});
+                            this.setState({g:'red'});
                           }
                            });
 
@@ -218,6 +223,58 @@ next = () => {
     }
     
 
+  componentWillReceiveProps({itemName}) {
+    // console.log({itemName})
+    // this.setState({...this.state.itemName,itemName})
+    Toast.loading('Searching');
+          setTimeout(() => {
+            Toast.hide();
+          }, 2000);
+
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const uri='https://maheshpandey9919.000webhostapp.com/newproject/services/services/searchItem.php?item='+itemName;
+    //console.log(uri)
+
+      fetch(proxyurl+uri,{
+        method: 'GET',
+        })
+      .then(response =>  response.json())
+      .then(resData => {
+
+      console.log(resData);
+      const searchresult=resData;
+      searchresult.map(data=>{
+        if(data.self_name=='self1')
+        {
+          this.setState({a:'green'})
+        }
+        if(data.self_name=='self2')
+        {
+          this.setState({b:'green'})
+        }
+        if(data.self_name=='self3')
+        {
+          this.setState({c:'green'})
+        }
+        if(data.self_name=='self5')
+        {
+          this.setState({e:'green'})
+        }
+
+
+      })
+     
+        
+      })
+
+
+
+
+
+
+
+
+  }
 
 
 
@@ -226,8 +283,10 @@ next = () => {
   
 render(){
   const { classes}= this.props;
+  console.log(this.state.itemName)
   
   console.log(this.state.hit);
+  
   return (
 
 <React.Fragment>
@@ -245,7 +304,7 @@ render(){
                                   </Grid>
                                 <Grid item xs={2} >
                                  
-                                    <Paper  style={{ backgroundColor: this.state.a? 'red': null}}  
+                                    <Paper  style={{ backgroundColor: this.state.a}}  
                                     className={classes.papersome} 
                                     selected={this.state.name === 'Shelf1'}
                                     onClick={event => this._onButtonClick(event, 'Shelf1')}>Shelf1</Paper>
@@ -255,7 +314,7 @@ render(){
                                   
                                   <Grid item xs={3}>
 
-                                    <Paper style={{ backgroundColor: this.state.b? 'red': null}}  
+                                    <Paper style={{ backgroundColor: this.state.b}}  
                                     className={classes.paper} 
                                     selected={this.state.name === 'Shelf2'}
                                     onClick={event => this._onButtonClick(event, 'Shelf2')}>Shelf2</Paper>
@@ -266,7 +325,7 @@ render(){
                            <Grid container spacing={5}>
                               <Grid item xs={2}>
                               
-                                    <Paper style={{ backgroundColor: this.state.c? 'red': null}} 
+                                    <Paper style={{ backgroundColor: this.state.c}} 
                                     className={classes.papersome} 
                                     selected={this.state.name === 'Shelf3'}
                                     onClick={event => this._onButtonClick(event, 'Shelf3')}>Shelf3</Paper>
@@ -275,12 +334,12 @@ render(){
                               </Grid>
                               <Grid item xs={3}>
                                     
-                                    <Paper style={{ backgroundColor: this.state.d? 'red': null}}  className={classes.paper}>Shelf4</Paper>
+                                    <Paper style={{ backgroundColor: this.state.d}}  className={classes.paper}>Shelf4</Paper>
                                    
                               </Grid>
                               <Grid item xs={2}>
                                     
-                                    <Paper  style={{ backgroundColor: this.state.e? 'red': null}}  
+                                    <Paper  style={{ backgroundColor: this.state.e}}  
                                     className={classes.papersome} 
                                     selected={this.state.name === 'Shelf5'}
                                     onClick={event => this._onButtonClick(event, 'Shelf5')}>Shelf5</Paper>
@@ -292,13 +351,13 @@ render(){
                           <Grid container spacing={5}>
                               <Grid item xs={5}>
                               
-                                    <Paper style={{ backgroundColor: this.state.f? 'red': null}} className={classes.paper}>Shelf6</Paper>
+                                    <Paper style={{ backgroundColor: this.state.f}} className={classes.paper}>Shelf6</Paper>
                                   
                                      
                               </Grid>
                               <Grid item xs={3}>
                                     
-                                    <Paper  style={{ backgroundColor: this.state.g? 'red': null}}  className={classes.paper}>Shelf7</Paper>
+                                    <Paper  style={{ backgroundColor: this.state.g}}  className={classes.paper}>Shelf7</Paper>
                                    
                               </Grid>
                               <Grid item xs={4}>

@@ -4,7 +4,8 @@ import './App.css';
 
 import SignIn from './Component/SignIn';
 import Home from './Component/Home';
-import SingleItemDetail from './Component/SingleItemDetail';
+import MiniDrawer from './Layout/Nav.js';
+
 
 import {BrowserRouter, Route, Switch,Link} from 'react-router-dom';
 //import Cube from './Demo.js';

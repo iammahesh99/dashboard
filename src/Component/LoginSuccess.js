@@ -23,9 +23,27 @@ class LoginSuccess extends Component {
     super(props);
     this.state={
       onLogout:props.onLogout,
-      user:props.user
+      user:props.user,
+      searchItemName:null
+      
+
     };
+   // this.searchItem=this.searchItem.bind(this);
+
     
+  }
+  searchItem=(e) =>{
+
+    if(e.keyCode===13)
+    {
+         //console.log('clicked')
+      // console.log('enterd')
+        //this.setState({searching:!this.state.searching})  
+       this.setState({searchItemName:e.target.value})
+    }
+    
+    //this.setState({searchItemName:e.target.value})
+
   }
 
   
@@ -39,11 +57,13 @@ class LoginSuccess extends Component {
      <MiniDrawer
      onLogout={this.state.onLogout}
      user={this.state.user}
+     searchItem={this.searchItem}
+
      />
      
        <Switch>
           <Route path="/" exact component={FirstScreen} />
-          <Route path="/StoreView" exact component={Home} />
+          <Route path="/StoreView"><Home itemName={this.state.searchItemName}/></Route >
           <Route path="/Order"  component={Order} />
           <Route path="/Inventory" component={Inventory} />  
           <Route path="/Shipment" component={Shipment} />
