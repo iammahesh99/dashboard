@@ -140,7 +140,7 @@ render(){
     <div 
    className={classes.root} 
     style={{width:selfWidth}}>
-      <h2 className="header">Self4</h2>
+      <h2 className="header" style={{color:'white'}}>Healthy Products</h2>
                  {rows}
     </div>
   );
