@@ -28,10 +28,7 @@ const styles = theme => ({
   root: {
     
    
-    marginLeft: theme.spacing(2),
-   
-    marginRight:theme.spacing(2),
-    paddingBottom:theme.spacing(2),
+    
     direction:"column",
     alignItems:"center",
     justify:"center",

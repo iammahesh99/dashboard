@@ -3,8 +3,10 @@ import './App.css';
 
 
 import SignIn from './Component/SignIn';
-import LoginSuccess from './Component/LoginSuccess'
+
 import MiniDrawer from './Layout/Nav.js';
+import Home from './Component/Home';
+
 
 
 import {BrowserRouter, Route, Switch,Link} from 'react-router-dom';
@@ -36,7 +38,7 @@ class App extends Component {
       <div>
       
       <Switch>
-      <Route path="/" exact component={LoginSuccess} />
+      <Route path="/" exact component={SignIn} />
        
        </Switch>
       

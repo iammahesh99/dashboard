@@ -107,11 +107,13 @@ class SignIn extends Component {
 
     }else{
       localStorage.setItem('email',this.state.authUser.email);
+
       
       return (<div>
         <LoginSuccess
         onLogout={this.handleLogout}
         user={this.state.authUser}
+        userType={this.state.user}
         />
         </div>)}
     }

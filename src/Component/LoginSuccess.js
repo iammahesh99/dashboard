@@ -17,6 +17,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 //import Cube from './Demo.js';
 //<Demo />
 //<Mapshow />
+// <Route path="/StoreView"><Home itemName={this.state.searchItemName}/></Route >
 
 class LoginSuccess extends Component {
  constructor(props) {
@@ -24,7 +25,9 @@ class LoginSuccess extends Component {
     this.state={
       onLogout:props.onLogout,
       user:props.user,
-      searchItemName:null
+      userType:props.userType,
+      searchItemName:null,
+      name:false
       
 
     };
@@ -45,10 +48,27 @@ class LoginSuccess extends Component {
     //this.setState({searchItemName:e.target.value})
 
   }
+  
 
   
   render() 
   {
+    
+
+    // const show=this.state.userType.map(data => {
+    //   if(data.role==="storeassociate")
+    //   {
+
+    //   return <Home itemName={this.state.searchItemName}/>
+    //   }
+    //   else if(data.role==="storemanager")
+    //   {
+    //   return <FirstScreen/>
+    //   }
+    // })
+    // console.log(this.state.userType)
+
+
     
     return (
       <BrowserRouter>
@@ -62,8 +82,7 @@ class LoginSuccess extends Component {
      />
      
        <Switch>
-          <Route path="/" exact component={FirstScreen} />
-          <Route path="/StoreView"><Home itemName={this.state.searchItemName}/></Route >
+          <Route path="/" exact ><Home itemName={this.state.searchItemName}/></Route>
           <Route path="/Order"  component={Order} />
           <Route path="/Inventory" component={Inventory} />  
           <Route path="/Shipment" component={Shipment} />

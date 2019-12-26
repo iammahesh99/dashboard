@@ -468,7 +468,7 @@ class MiniDrawer extends Component {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            
+            <p>{this.props.user.displayName}</p>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -480,7 +480,7 @@ class MiniDrawer extends Component {
               
               <img
                 width='32'
-                
+                src={this.props.user.photoURL}
                 className='avatar circle responsive-img'
                 
               />

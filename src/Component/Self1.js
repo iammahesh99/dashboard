@@ -192,8 +192,7 @@ render(){
                filter: this.state.b? 'blur(5px)': null
                 }}
               >
-		          <img src={require('../Image/self1/frooti.png')} className={classes.paper3} 
-		          />
+		          <img src={require('../Image/self1/frooti.png')} className={classes.paper3} />
               <img src={require('../Image/self1/frooti.png')} className={classes.paper3} 
               />
               <img src={require('../Image/self1/frooti.png')} className={classes.paper3} 

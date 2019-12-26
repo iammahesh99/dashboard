@@ -26,9 +26,7 @@ const styles = theme => ({
   root: {
     
    
-    marginLeft: theme.spacing(2),
-   
-    marginRight:theme.spacing(2),
+    
     paddingBottom:theme.spacing(2),
     direction:"column",
     alignItems:"center",
@@ -68,30 +66,7 @@ class ItemMonitor extends Component {
   }
 
 componentDidMount() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const uri='https://maheshpandey9919.000webhostapp.com/newproject/services/services/under_stock.php';
-    //console.log(uri)
-
-      fetch(proxyurl+uri,{
-        method: 'GET',
-        })
-      .then(response =>  response.json())
-      .then(resData => {
-        //const Data=resData;
-
-    const Data = resData;
-
-    let a=0;
-    const arr=Data.map(self=>{return self.self_name});
-    Data.map(pe => {return a=a+1});
-    this.setState({itemCount:a});
-    this.setState({hit:arr});
-    
-        
-     //const arr=persons.map(pe => {return pe.supplier});
-  
-        
-      });
+   
     }
     
 

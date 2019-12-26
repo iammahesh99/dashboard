@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import '../CssFile/menu.css';
 import '../CssFile/Home.css';
+import '../CssFile/Shipment.css';
 import Chart from '../Data/Chart';
 import Self1 from '../Component/Self1';
 import Self2 from '../Component/Self2';
@@ -35,6 +36,11 @@ import Toast from 'light-toast';
 
       //<img src={require('../Image/corn.jpg')} className={classes.paper} />
 
+     
+
+
+
+
 
 
 
@@ -42,9 +48,6 @@ import Toast from 'light-toast';
 const styles = theme => ({
 
   root: {
-    
-    marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(3),
     textAlign: 'center',
     backgroundColor: '#4a4a4a',
     border: '3px solid #DBCBD8',
@@ -53,11 +56,8 @@ const styles = theme => ({
   },
 
   root1: {
-    marginTop: theme.spacing(1),
-    marginLeft: theme.spacing(3),
-    marginRight:theme.spacing(3),
+    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(1),
-    
     height:'100%',
     textAlign: 'center',
     backgroundColor: '#4a4a4a',
@@ -118,12 +118,12 @@ class Home extends Component {
       
     };
     this._onButtonClick = this._onButtonClick.bind(this);
-    this.handleClick=this.handleClick.bind(this);
+    
   }
 
 
 
-  handleClick(){
+  handleClick=()=>{
 
     this.state.hit.map(content =>{
                           if(content.self_name==='self1')
@@ -214,7 +214,7 @@ next = () => {
     
     
     this.setState({hit:resData});
-                          
+    
     
         
      //const arr=persons.map(pe => {return pe.supplier});
@@ -288,16 +288,15 @@ render(){
   console.log(this.state.hit);
   
   return (
-
 <React.Fragment>
-<div className='TableRow' >
+<div style={{display:'table',width:'100%',marginTop:'6%'}}>
+<div style={{display:'table-row'}}>
+            <div style={{display:'table-cell',width:'45%',}}>
         
-            <div className='leftPane' >
-            
-
-                <Container className={classes.root}>
-                              <h2> TopView of Store1</h2>
-                         <Grid >
+            <div className={classes.root} >
+                
+              <h2> TopView of Store1</h2>
+               <Grid >
                      
                               <Grid container spacing={5}>
                               <Grid item xs={5}>      
@@ -319,6 +318,7 @@ render(){
                                     selected={this.state.name === 'Shelf2'}
                                     onClick={event => this._onButtonClick(event, 'Shelf2')}>Shelf2</Paper>
                                     
+                                    
                                       </Grid>
                             </Grid>
 
@@ -334,7 +334,11 @@ render(){
                               </Grid>
                               <Grid item xs={3}>
                                     
-                                    <Paper style={{ backgroundColor: this.state.d}}  className={classes.paper}>Shelf4</Paper>
+                                    <Paper style={{ backgroundColor: this.state.d}}  
+                                    className={classes.paper}
+                                    selected={this.state.name === 'Shelf4'}
+                                    onClick={event => this._onButtonClick(event, 'Shelf4')}
+                                    >Shelf4</Paper>
                                    
                               </Grid>
                               <Grid item xs={2}>
@@ -370,12 +374,11 @@ render(){
 
 
                       </Grid>
-
-              
-                    </Container>
+                         
+                </div>
                 </div>
 
-  <div className='rightPane' >
+  <div style={{display:'table-cell',width:'50%',}} >
 
 
     {this.state.open ? <Frontview  understock={this.state.hit}  shelfname={this.state.shelfname}/> :null   }
@@ -384,43 +387,52 @@ render(){
                                           
     </div>
  </div>
+ </div>
+
 <div className={classes.root1}>
-<ReactSimpleCarousel
-            isInfinity
-            className="carousel2"
-            onMount={this.handleMount}
-          >
-          <div>
-          <h2>Stock Monitoring</h2>
-          <StockMonitor delevent={this.handleClick} />
-          </div>
-          <div>
-          <h2>Item Monitoring</h2>
-          <ItemMonitor delevent={this.handleClick} />
-          </div>
-           
-  </ReactSimpleCarousel>
-  <IconButton onClick={this.prev}
-  style={{color:'white'}}
-  >
-          <ArrowBackIosIcon />
-</IconButton>
- 
-  <IconButton onClick={this.next}
-  style={{color:'white'}}
-  >
-          <ArrowForwardIosIcon />
-</IconButton>
+<Grid>
+<Grid container style={{marginTop:'1%'}}>
+<Grid item xs={.8} style={{paddingTop:'1%'}}>
+    <IconButton onClick={this.prev}
+      style={{color:'white'}}
+      >
+              <ArrowBackIosIcon />
+    </IconButton>
+</Grid>
+<Grid item xs={11}>
+
+    <ReactSimpleCarousel
+                isInfinity
+                className="carousel2"
+                onMount={this.handleMount}
+              >
+              
+              <div>
+              <StockMonitor delevent={this.handleClick} />
+              </div>
+              <div>
+              <ItemMonitor delevent={this.handleClick} />
+              </div>
+               
+      </ReactSimpleCarousel>
+  
+  </Grid>
+  <Grid item xs={.8} style={{paddingTop:'1%'}}>
+        <IconButton onClick={this.next}
+        style={{color:'white'}}
+        >
+                <ArrowForwardIosIcon />
+      </IconButton>
+
+</Grid>
+</Grid>
+</Grid>
     
-
-
-
-
-
 </div>
 
+
+
 </React.Fragment>
- 
   );
 }
 }

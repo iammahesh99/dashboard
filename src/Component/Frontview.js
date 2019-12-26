@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Self1 from '../Component/Self1';
 import Self2 from '../Component/Self2';
 import Self3 from '../Component/Self3';
+import Self4 from '../Component/Self4';
 import Self5 from '../Component/Self5';
 
 
@@ -29,6 +30,10 @@ export default class Frontview extends Component{
     	{
     		return <Self3 understock={this.state.understock1}/>
     	}
+        else if(this.state.shelfname=='Shelf4')
+        {
+            return <Self4 understock={this.state.understock1}/>
+        }
     	else if(this.state.shelfname=='Shelf5')
     	{
     		return <Self5 understock={this.state.understock1}/>
