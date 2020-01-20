@@ -103,27 +103,27 @@ class Self1 extends Component {
   };
   componentDidMount(){
   	this.state.understock.map(data=>{
-  		 if(data.item==='coke' & data.self_name==='self1')
+  		 if(data.item==='coke' & data.self_name==='shelf1')
               {
                  this.setState({a:true});
                }
-        if(data.item==='frooti' & data.self_name==='self1')
+        if(data.item==='frooti' & data.self_name==='shelf1')
               {
                  this.setState({b:true});
                }
-        if(data.item==='limica' & data.self_name==='self1')
+        if(data.item==='limica' & data.self_name==='shelf1')
               {
                  this.setState({c:true});
                }
-        if(data.item==='maaza' & data.self_name==='self1')
+        if(data.item==='maaza' & data.self_name==='shelf1')
               {
                  this.setState({d:true});
                }
-        if(data.item==='pepsi' & data.self_name==='self1')
+        if(data.item==='pepsi' & data.self_name==='shelf1')
               {
                  this.setState({e:true});
                }
-        if(data.item==='redbull' & data.self_name==='self1')
+        if(data.item==='redbull' & data.self_name==='shelf1')
               {
                  this.setState({f:true});
                }

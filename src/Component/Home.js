@@ -244,19 +244,19 @@ next = () => {
       console.log(resData);
       const searchresult=resData;
       searchresult.map(data=>{
-        if(data.self_name=='self1')
+        if(data.self_name=='shelf1')
         {
           this.setState({a:'green'})
         }
-        if(data.self_name=='self2')
+        if(data.self_name=='shelf2')
         {
           this.setState({b:'green'})
         }
-        if(data.self_name=='self3')
+        if(data.self_name=='shelf3')
         {
           this.setState({c:'green'})
         }
-        if(data.self_name=='self5')
+        if(data.self_name=='shelf5')
         {
           this.setState({e:'green'})
         }
