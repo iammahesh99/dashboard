@@ -135,10 +135,10 @@ render(){
             <Paper className={classes.paper}>
                                     
                   <Typography variant="h6" component="h2">
-                    Shrinkage
+                    Planogram Compliance
                 </Typography>
                 <Typography component="p" style={{color:'red'}}>
-                  anything
+                  1
                 </Typography>
                 </Paper>
                                     
@@ -151,7 +151,7 @@ render(){
                     Other Analysis
                 </Typography>
                 <Typography component="p" style={{color:'red'}}>
-                  anything
+                  n
                 </Typography>
                 </Paper>
                                     

@@ -126,31 +126,31 @@ class Home extends Component {
   handleClick=()=>{
 
     this.state.hit.map(content =>{
-                          if(content.self_name==='self1')
+                          if(content.self_name==='shelf1')
                           {
                             this.setState({a:'red'});
                           }
-                          if(content.self_name==='self2')
+                          if(content.self_name==='shelf2')
                           {
                             this.setState({b:'red'});
                           }
-                          if(content.self_name==='self3')
+                          if(content.self_name==='shelf3')
                           {
                             this.setState({c:'red'});
                           }
-                          if(content.self_name==='self4')
+                          if(content.self_name==='shelf4')
                           {
                             this.setState({d:'red'});
                           }
-                          if(content.self_name==='self5')
+                          if(content.self_name==='shelf5')
                           {
                             this.setState({e:'red'});
                           }
-                          if(content.self_name==='self6')
+                          if(content.self_name==='shelf6')
                           {
                             this.setState({f:'red'});
                           }
-                          if(content.self_name==='self7')
+                          if(content.self_name==='shelf7')
                           {
                             this.setState({g:'red'});
                           }

@@ -72,31 +72,31 @@ class Self2 extends Component {
   };
   componentDidMount(){
     this.state.understock.map(data=>{
-       if(data.item==='dove' & data.self_name==='self2')
+       if(data.item==='dove' & data.self_name==='shelf2')
               {
                  this.setState({a:true});
                }
-        if(data.item==='headshoulder' & data.self_name==='self2')
+        if(data.item==='headshoulder' & data.self_name==='shelf2')
               {
                  this.setState({b:true});
                }
-        if(data.item==='loreal' & data.self_name==='self2')
+        if(data.item==='loreal' & data.self_name==='shelf2')
               {
                  this.setState({c:true});
                }
-        if(data.item==='pears' & data.self_name==='self2')
+        if(data.item==='pears' & data.self_name==='shelf2')
               {
                  this.setState({d:true});
                }
-        if(data.item==='rin' & data.self_name==='self2')
+        if(data.item==='rin' & data.self_name==='shelf2')
               {
                  this.setState({e:true});
                }
-        if(data.item==='surfexcel' & data.self_name==='self2')
+        if(data.item==='surfexcel' & data.self_name==='shelf2')
               {
                  this.setState({f:true});
                }
-        if(data.item==='tide' & data.self_name==='self2')
+        if(data.item==='tide' & data.self_name==='shelf2')
               {
                  this.setState({g:true});
                }

@@ -63,31 +63,31 @@ class Self3 extends Component {
   };
   componentDidMount(){
   	this.state.understock.map(data=>{
-       if(data.item==='deo' & data.self_name==='self3')
+       if(data.item==='deo' & data.self_name==='shelf3')
               {
                  this.setState({a:true});
                }
-        if(data.item==='kajal' & data.self_name==='self3')
+        if(data.item==='kajal' & data.self_name==='shelf3')
               {
                  this.setState({b:true});
                }
-        if(data.item==='lipliner' & data.self_name==='self3')
+        if(data.item==='lipliner' & data.self_name==='shelf3')
               {
                  this.setState({c:true});
                }
-        if(data.item==='lipstic' & data.self_name==='self3')
+        if(data.item==='lipstic' & data.self_name==='shelf3')
               {
                  this.setState({d:true});
                }
-        if(data.item==='nailpolish' & data.self_name==='self3')
+        if(data.item==='nailpolish' & data.self_name==='shelf3')
               {
                  this.setState({e:true});
                }
-        if(data.item==='sunscreen' & data.self_name==='self3')
+        if(data.item==='sunscreen' & data.self_name==='shelf3')
               {
                  this.setState({f:true});
                }
-        if(data.item==='toner' & data.self_name==='self3')
+        if(data.item==='toner' & data.self_name==='shelf3')
               {
                  this.setState({g:true});
                }

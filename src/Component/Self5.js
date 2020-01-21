@@ -62,31 +62,31 @@ class Self5 extends Component {
   };
   componentDidMount(){
   	this.state.understock.map(data=>{
-       if(data.item==='dairymilk' & data.self_name==='self5')
+       if(data.item==='dairymilk' & data.self_name==='shelf5')
               {
                  this.setState({a:true});
                }
-        if(data.item==='ferrero' & data.self_name==='self5')
+        if(data.item==='ferrero' & data.self_name==='shelf5')
               {
                  this.setState({b:true});
                }
-        if(data.item==='hershey' & data.self_name==='self5')
+        if(data.item==='hershey' & data.self_name==='shelf5')
               {
                  this.setState({c:true});
                }
-        if(data.item==='kitkat' & data.self_name==='self5')
+        if(data.item==='kitkat' & data.self_name==='shelf5')
               {
                  this.setState({d:true});
                }
-        if(data.item==='munch' & data.self_name==='self5')
+        if(data.item==='munch' & data.self_name==='shelf5')
               {
                  this.setState({e:true});
                }
-        if(data.item==='nutties' & data.self_name==='self5')
+        if(data.item==='nutties' & data.self_name==='shelf5')
               {
                  this.setState({f:true});
                }
-        if(data.item==='snickers' & data.self_name==='self5')
+        if(data.item==='snickers' & data.self_name==='shelf5')
               {
                  this.setState({g:true});
                }
