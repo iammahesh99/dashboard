@@ -127,7 +127,7 @@ class Self1 extends Component {
               {
                  this.setState({f:true});
                }
-        if(data.item==='sprite' & data.self_name==='self1')
+        if(data.item==='sprite' & data.self_name==='shelf1')
               {
                  this.setState({g:true});
                }
